@@ -114,11 +114,11 @@ return [
   */
 
   'features' => [
-    Features::registration(),
-    Features::resetPasswords(),
     Features::emailVerification(),
-    // Features::updateProfileInformation(),
     Features::updatePasswords(),
+    Features::resetPasswords(),
+    // Features::registration(),
+    // Features::updateProfileInformation(),
     // Features::twoFactorAuthentication([
     //   'confirmPassword' => true,
     // ]),
