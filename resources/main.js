@@ -3,6 +3,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import antd from 'ant-design-vue'
 import App from './applause/app.vue'
 import routes from './applause/routes/all'
+import 'ant-design-vue/dist/antd.less'
+import './applause/styles/tailwind.css'
 
 const app = createApp(App)
 const router = createRouter({

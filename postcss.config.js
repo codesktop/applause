@@ -1,14 +1,13 @@
 module.exports = {
   plugins: {
     tailwindcss: {
-      purge: [],
-      darkMode: false, // or 'media' or 'class'
+      purge: [
+        'resources/applause/**/*.vue'
+      ],
       theme: {
-        extend: {}
+        extend: {},
       },
-      variants: {
-        extend: {}
-      },
+      variants: {},
       plugins: []
     },
     autoprefixer: {}
