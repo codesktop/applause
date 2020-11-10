@@ -4,16 +4,16 @@
       <div class="text-center mb-8">
         <h1 class="text-3xl">Welcome Back</h1>
       </div>
-      <a-form class="login" :model="login" layout="vertical">
+      <a-form class="login" :model="user" layout="vertical">
         <a-form-item>
-          <a-input v-model:value="login.email" size="large">
+          <a-input v-model:value="user.email" size="large">
             <template #prefix>
               <UserOutlined class="mr-1" />
             </template>
           </a-input>
         </a-form-item>
         <a-form-item>
-          <a-input v-model:value="login.password" size="large" type="password">
+          <a-input v-model:value="user.password" size="large" type="password">
             <template #prefix>
               <LockOutlined class="mr-1" />
             </template>
@@ -41,7 +41,7 @@ export default {
   },
   data() {
     return {
-      login: {
+      user: {
         email: '',
         password: ''
       }
@@ -50,7 +50,7 @@ export default {
   methods: {
     async onSubmit() {
       try {
-        const { email, password } = this.login
+        const { email, password } = this.user
         await axios.post('/api/login', { email, password })
       } catch ({ response }) {
         message.error(response.data.message)
