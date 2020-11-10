@@ -4,23 +4,23 @@
       <div class="text-center mb-8">
         <h1 class="text-3xl">Welcome Back</h1>
       </div>
-      <a-form class="login" layout="vertical">
+      <a-form class="login" :model="login" layout="vertical">
         <a-form-item>
-          <a-input size="large">
+          <a-input v-model:value="login.email" size="large">
             <template #prefix>
               <UserOutlined class="mr-1" />
             </template>
           </a-input>
         </a-form-item>
         <a-form-item>
-          <a-input size="large" type="password">
+          <a-input v-model:value="login.password" size="large" type="password">
             <template #prefix>
               <LockOutlined class="mr-1" />
             </template>
           </a-input>
         </a-form-item>
         <a-form-item>
-          <a-button block size="large" type="primary">Log In</a-button>
+          <a-button block size="large" type="primary" @click="onSubmit">Log In</a-button>
         </a-form-item>
       </a-form>
     </div>
@@ -28,6 +28,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+import { message } from 'ant-design-vue'
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
 import OutsideLayout from '../layouts/outside.vue'
 
@@ -36,6 +38,24 @@ export default {
     UserOutlined,
     LockOutlined,
     OutsideLayout
+  },
+  data() {
+    return {
+      login: {
+        email: '',
+        password: ''
+      }
+    }
+  },
+  methods: {
+    async onSubmit() {
+      try {
+        const { email, password } = this.login
+        await axios.post('/api/login', { email, password })
+      } catch ({ response }) {
+        message.error(response.data.message)
+      }
+    }
   }
 }
 </script>

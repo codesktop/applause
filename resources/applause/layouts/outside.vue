@@ -7,7 +7,12 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
+  async created() {
+    await axios.get('/api/sanctum/csrf-cookie')
+  }
 }
 </script>
 
