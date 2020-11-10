@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-blue-900">
+  <div class="min-h-screen bg-900">
     <div class="flex items-center justify-center h-full">
       <slot></slot>
     </div>
@@ -10,3 +10,9 @@
 export default {
 }
 </script>
+
+<style scoped>
+.bg-900 {
+  background-color: #061638;
+}
+</style>

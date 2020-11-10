@@ -1,20 +1,26 @@
 <template>
   <OutsideLayout>
-    <div class="bg-white p-5">
-      <a-form class="">
+    <div class="bg-white shadow rounded px-12 py-8">
+      <div class="text-center mb-8">
+        <h1 class="text-3xl">Welcome Back</h1>
+      </div>
+      <a-form class="login" layout="vertical">
         <a-form-item>
-          <a-input class="w-64" size="large">
+          <a-input size="large">
             <template #prefix>
-              <UserOutlined />
+              <UserOutlined class="mr-1" />
             </template>
           </a-input>
         </a-form-item>
         <a-form-item>
-          <a-input size="large">
+          <a-input size="large" type="password">
             <template #prefix>
-              <LockOutlined />
+              <LockOutlined class="mr-1" />
             </template>
           </a-input>
+        </a-form-item>
+        <a-form-item>
+          <a-button block size="large" type="primary">Log In</a-button>
         </a-form-item>
       </a-form>
     </div>
@@ -33,3 +39,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+form.login {
+  width: 24rem;
+}
+</style>

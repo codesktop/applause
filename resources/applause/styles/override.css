@@ -1,0 +1,7 @@
+.ant-input:focus {
+  box-shadow: none;
+}
+
+.ant-input-affix-wrapper:focus {
+  box-shadow: none;
+}
