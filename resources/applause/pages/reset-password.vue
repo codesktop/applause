@@ -6,13 +6,13 @@
       </div>
       <a-form class="resetPassword" :model="user" layout="vertical">
         <a-form-item>
-          <a-input v-model:value="user.newPassword" size="large" type="password"></a-input>
+          <a-input v-model:value="user.password" placeholder="Password" size="large" type="password"></a-input>
         </a-form-item>
         <a-form-item>
-          <a-input v-model:value="user.newPassword" size="large" type="password"></a-input>
+          <a-input v-model:value="user.passwordConfirmation" placeholder="Password Confirmation" size="large" type="password"></a-input>
         </a-form-item>
         <a-form-item>
-          <a-button block size="large" type="primary" @click="onSubmit">Submit</a-button>
+          <a-button block :loading="isLoading" size="large" type="primary" @click="onSubmit">Submit</a-button>
         </a-form-item>
       </a-form>
     </div>
@@ -33,16 +33,24 @@ export default {
       user: {
         password: '',
         passwordConfirmation: ''
-      }
+      },
+      isLoading: false
     }
   },
   methods: {
     async onSubmit() {
+      this.isLoading = true
       try {
         const { password, passwordConfirmation } = this.user
         await axios.post('/api/reset-password', { password, password_confirmation: passwordConfirmation })
+        this.user = {
+          password: '',
+          passwordConfirmation: ''
+        }
       } catch ({ response }) {
         message.error(response.data.message)
+      } finally {
+        this.isLoading = false
       }
     }
   }

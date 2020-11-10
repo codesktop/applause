@@ -6,14 +6,14 @@
       </div>
       <a-form class="forgotPassword" :model="user" layout="vertical">
         <a-form-item>
-          <a-input v-model:value="user.email" size="large">
+          <a-input v-model:value="user.email" placeholder="Email Address" size="large" type="email">
             <template #prefix>
               <MailOutlined class="mr-1" />
             </template>
           </a-input>
         </a-form-item>
         <a-form-item>
-          <a-button block size="large" type="primary" @click="onSubmit">Submit</a-button>
+          <a-button block :loading="isLoading" size="large" type="primary" @click="onSubmit">Submit</a-button>
         </a-form-item>
       </a-form>
     </div>
@@ -35,17 +35,22 @@ export default {
     return {
       user: {
         email: ''
-      }
+      },
+      isLoading: false
     }
   },
   methods: {
     async onSubmit() {
+      this.isLoading = true
       try {
         const { email } = this.user
         const { data } = await axios.post('/api/forgot-password', { email })
         message.info(data.message)
+        this.user.email = ''
       } catch ({ response }) {
         message.error(response.data.message)
+      } finally {
+        this.isLoading = false
       }
     }
   }

@@ -6,21 +6,24 @@
       </div>
       <a-form class="login" :model="user" layout="vertical">
         <a-form-item>
-          <a-input v-model:value="user.email" size="large">
+          <a-input v-model:value="user.email" placeholder="Email Address" size="large" type="email">
             <template #prefix>
               <UserOutlined class="mr-1" />
             </template>
           </a-input>
         </a-form-item>
         <a-form-item>
-          <a-input v-model:value="user.password" size="large" type="password">
+          <a-input v-model:value="user.password" placeholder="Password" size="large" type="password">
             <template #prefix>
               <LockOutlined class="mr-1" />
             </template>
           </a-input>
+          <div class="flex justify-end">
+            <router-link class="leading-10" to="/forgot-password">Forgot your password?</router-link>
+          </div>
         </a-form-item>
         <a-form-item>
-          <a-button block size="large" type="primary" @click="onSubmit">Log In</a-button>
+          <a-button block :loading="isLoading" size="large" type="primary" @click="onSubmit">Log In</a-button>
         </a-form-item>
       </a-form>
     </div>
@@ -44,16 +47,20 @@ export default {
       user: {
         email: '',
         password: ''
-      }
+      },
+      isLoading: false
     }
   },
   methods: {
     async onSubmit() {
+      this.isLoading = true
       try {
         const { email, password } = this.user
-        await axios.post('/api/login', { email, password })
+        await axios.post('/api/login', { email, password, remember: 'on' })
       } catch ({ response }) {
         message.error(response.data.message)
+      } finally {
+        this.isLoading = false
       }
     }
   }
