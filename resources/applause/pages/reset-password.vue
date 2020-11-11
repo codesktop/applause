@@ -1,5 +1,5 @@
 <template>
-  <OutsideLayout>
+  <outside-layout>
     <div class="bg-white shadow rounded px-12 py-8">
       <div class="text-center mb-8">
         <h1 class="text-3xl">Reset Password</h1>
@@ -16,7 +16,7 @@
         </a-form-item>
       </a-form>
     </div>
-  </OutsideLayout>
+  </outside-layout>
 </template>
 
 <script>

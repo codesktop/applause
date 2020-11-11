@@ -5,7 +5,7 @@
         <a-result status="404" title="Page not found" sub-title="The page you were looking for doesn’t exist.">
         </a-result>
         <a-divider>
-          <router-link class="font-normal" to="/home">Back to home</router-link>
+          <router-link class="font-normal" to="/">Back to home</router-link>
         </a-divider>
       </div>
     </div>
