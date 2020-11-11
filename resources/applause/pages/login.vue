@@ -35,6 +35,7 @@ import axios from 'axios'
 import { message } from 'ant-design-vue'
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
 import OutsideLayout from '../layouts/outside.vue'
+import head from '../plugins/head'
 
 export default {
   components: {
@@ -63,6 +64,9 @@ export default {
         this.isLoading = false
       }
     }
+  },
+  created() {
+    head.title('Log In')
   }
 }
 </script>

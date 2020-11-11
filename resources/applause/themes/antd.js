@@ -26,6 +26,7 @@ export default {
   '@input-padding-vertical-base': '8px',
   '@input-padding-vertical-lg': '12px',
   '@input-padding-horizontal-lg': '12px',
+  '@form-item-margin-bottom': '20px',
   '@pagination-item-size-sm': '32px',
   '@pagination-item-size': '40px',
   '@dropdown-line-height': '32px',

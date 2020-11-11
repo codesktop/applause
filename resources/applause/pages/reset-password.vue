@@ -23,6 +23,7 @@
 import axios from 'axios'
 import { message } from 'ant-design-vue'
 import OutsideLayout from '../layouts/outside.vue'
+import head from '../plugins/head'
 
 export default {
   components: {
@@ -41,8 +42,10 @@ export default {
     async onSubmit() {
       this.isLoading = true
       try {
+        const { email } = this.$route.query
+        const { token } = this.$route.params
         const { password, passwordConfirmation } = this.user
-        await axios.post('/api/reset-password', { password, password_confirmation: passwordConfirmation })
+        await axios.post('/api/reset-password', { email, token, password, password_confirmation: passwordConfirmation })
         this.user = {
           password: '',
           passwordConfirmation: ''
@@ -53,6 +56,9 @@ export default {
         this.isLoading = false
       }
     }
+  },
+  created() {
+    head.title('Reset Password')
   }
 }
 </script>

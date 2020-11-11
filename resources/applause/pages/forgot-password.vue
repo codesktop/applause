@@ -3,6 +3,7 @@
     <div class="bg-white shadow rounded px-12 py-8">
       <div class="text-center mb-8">
         <h1 class="text-3xl">Forgot Password</h1>
+        <p>Enter your email address to retrieve your password</p>
       </div>
       <a-form class="forgotPassword" :model="user" layout="vertical">
         <a-form-item>
@@ -13,8 +14,11 @@
           </a-input>
         </a-form-item>
         <a-form-item>
-          <a-button block :loading="isLoading" size="large" type="primary" @click="onSubmit">Submit</a-button>
+          <a-button block :loading="isLoading" size="large" type="primary" @click="onSubmit">Retrieve Password</a-button>
         </a-form-item>
+        <a-divider>
+          <router-link class="font-normal" to="/login">Back to login page</router-link>
+        </a-divider>
       </a-form>
     </div>
   </OutsideLayout>
@@ -25,6 +29,7 @@ import axios from 'axios'
 import { message } from 'ant-design-vue'
 import { MailOutlined } from '@ant-design/icons-vue'
 import OutsideLayout from '../layouts/outside.vue'
+import head from '../plugins/head'
 
 export default {
   components: {
@@ -53,6 +58,9 @@ export default {
         this.isLoading = false
       }
     }
+  },
+  created() {
+    head.title('Forgot Password')
   }
 }
 </script>

@@ -1,7 +1,9 @@
 <template>
   <div class="min-h-screen bg-900">
-    <div class="flex items-center justify-center h-full">
-      <slot></slot>
+    <div class="flex items-center justify-center">
+      <div class="py-16">
+        <slot></slot>
+      </div>
     </div>
   </div>
 </template>
