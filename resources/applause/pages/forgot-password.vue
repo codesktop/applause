@@ -1,27 +1,32 @@
 <template>
-  <OutsideLayout>
+  <outside-layout>
     <div class="bg-white shadow rounded px-12 py-8">
-      <div class="text-center mb-8">
-        <h1 class="text-3xl">Forgot Password</h1>
-        <p>Enter your email address to retrieve your password</p>
+      <div v-if="success" class="max-w-sm">
+        <a-result status="success" title="We have sent you a password recovery email."></a-result>
       </div>
-      <a-form class="forgotPassword" :model="user" layout="vertical">
-        <a-form-item>
-          <a-input v-model:value="user.email" placeholder="Email Address" size="large" type="email">
-            <template #prefix>
-              <MailOutlined class="mr-1" />
-            </template>
-          </a-input>
-        </a-form-item>
-        <a-form-item>
-          <a-button block :loading="isLoading" size="large" type="primary" @click="onSubmit">Retrieve Password</a-button>
-        </a-form-item>
-        <a-divider>
-          <router-link class="font-normal" to="/login">Back to login page</router-link>
-        </a-divider>
-      </a-form>
+      <template v-else>
+        <div class="text-center mb-8">
+          <h1 class="text-3xl">Forgot Password</h1>
+          <p>Enter your email address to retrieve your password</p>
+        </div>
+        <a-form class="forgotPassword" :model="user" layout="vertical">
+          <a-form-item>
+            <a-input v-model:value="user.email" placeholder="Email Address" size="large" type="email">
+              <template #prefix>
+                <MailOutlined class="mr-1" />
+              </template>
+            </a-input>
+          </a-form-item>
+          <a-form-item>
+            <a-button block :loading="isLoading" size="large" type="primary" @click="onSubmit">Retrieve Password</a-button>
+          </a-form-item>
+        </a-form>
+      </template>
+      <a-divider>
+        <router-link class="font-normal" to="/login">Back to login page</router-link>
+      </a-divider>
     </div>
-  </OutsideLayout>
+  </outside-layout>
 </template>
 
 <script>
@@ -41,6 +46,7 @@ export default {
       user: {
         email: ''
       },
+      success: false,
       isLoading: false
     }
   },
@@ -50,8 +56,8 @@ export default {
       try {
         const { email } = this.user
         const { data } = await axios.post('/api/forgot-password', { email })
-        message.info(data.message)
         this.user.email = ''
+        this.success = true
       } catch ({ response }) {
         message.error(response.data.message)
       } finally {
