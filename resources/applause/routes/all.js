@@ -1,6 +1,7 @@
 import loginPage from '../pages/login.vue'
 import forgotPasswordPage from '../pages/forgot-password.vue'
 import resetPasswordPage from '../pages/reset-password.vue'
+import notFoundPage from '../pages/not-found.vue'
 
 export default [
   {
@@ -15,4 +16,8 @@ export default [
     path: '/reset-password/:token',
     component: resetPasswordPage
   },
+  {
+    path: '/:slug(.*)*',
+    component: notFoundPage
+  }
 ]
