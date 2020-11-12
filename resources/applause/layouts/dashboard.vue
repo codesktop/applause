@@ -18,8 +18,8 @@
         </a-sub-menu>
       </a-menu>
     </a-layout-sider>
-    <a-layout>
-      <a-layout-header class="bg-white shadow">
+    <a-layout class="bg-gray-200">
+      <a-layout-header class="bg-white shadow z-50">
         <div class="flex justify-between">
           <div>
             <a-input-search></a-input-search>

@@ -13,3 +13,7 @@
 .ant-menu-dark .ant-menu-inline.ant-menu-sub {
   box-shadow: none;
 }
+
+.ant-input-affix-wrapper-focused {
+  box-shadow: none;
+}
