@@ -28,29 +28,28 @@
     </a-layout-sider>
     <a-layout class="bg-gray-200">
       <a-layout-header class="bg-white shadow px-12 z-50">
-        <div class="flex justify-between">
-          <div class="search">
-            <a-input-search></a-input-search>
+        <div class="flex items-center h-full">
+          <div class="flex flex-auto flex-row-reverse items-center">
+            <a-dropdown placement="bottomRight">
+              <a-space class="cursor-pointer">
+                <a-avatar src="https://i2.wp.com/ui-avatars.com/api/applause"></a-avatar>
+                <span class="select-none">applause</span>
+              </a-space>
+              <template #overlay>
+                <a-menu>
+                  <a-menu-item>
+                    <router-link to="/user/profile">Your profile</router-link>
+                  </a-menu-item>
+                  <a-menu-item>
+                    <router-link to="/settings">Settings</router-link>
+                  </a-menu-item>
+                  <a-menu-item>
+                    <router-link to="/">Sign out</router-link>
+                  </a-menu-item>
+                </a-menu>
+              </template>
+            </a-dropdown>
           </div>
-          <a-dropdown placement="bottomRight">
-            <a-space class="cursor-pointer">
-              <a-avatar src="https://i2.wp.com/ui-avatars.com/api/applause"></a-avatar>
-              <span class="select-none">applause</span>
-            </a-space>
-            <template #overlay>
-              <a-menu>
-                <a-menu-item>
-                  <router-link to="/user/profile">Your profile</router-link>
-                </a-menu-item>
-                <a-menu-item>
-                  <router-link to="/settings">Settings</router-link>
-                </a-menu-item>
-                <a-menu-item>
-                  <router-link to="/">Sign out</router-link>
-                </a-menu-item>
-              </a-menu>
-            </template>
-          </a-dropdown>
         </div>
       </a-layout-header>
       <a-layout-content>
