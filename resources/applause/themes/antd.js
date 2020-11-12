@@ -28,6 +28,8 @@ export default {
   '@form-item-margin-bottom': '20px',
   '@layout-header-background': colors.blue[900],
   '@layout-sider-background': colors.blue[900],
+  '@menu-item-boundary-margin': 0,
+  '@menu-item-vertical-margin': 0,
   '@menu-dark-bg': colors.blue[900],
   '@menu-dark-submenu-bg': colors.blue[900],
   '@menu-dark-arrow-color': '#dee2e6',

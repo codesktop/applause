@@ -1,33 +1,42 @@
 <template>
   <a-layout>
-    <a-layout-sider class="h-screen" width="240">
-      <a-menu v-model:openKeys="openKeys" v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
+    <a-layout-sider class="h-screen" :width="256">
+      <div class="h-16"></div>
+      <a-menu v-model:openKeys="openKeys"
+              v-model:selectedKeys="selectedKeys" theme="dark" mode="inline" :inlineIndent="0">
         <a-menu-item>
-          MANAGE
+          <span class="px-6">Dashboard</span>
         </a-menu-item>
         <a-sub-menu>
           <template #title>
-            <span>ACCOUNT</span>
+            <span class="font-bold text-sm text-gray-600 tracking-widest uppercase px-6">RESOURCES</span>
           </template>
           <a-menu-item>
-            Billing
+            <span class="px-6">Networks</span>
           </a-menu-item>
           <a-menu-item>
-            Settings
+            <span class="px-6">Databases</span>
+          </a-menu-item>
+          <a-menu-item>
+            <span class="px-6">Caches</span>
+          </a-menu-item>
+          <a-menu-item>
+            <span class="px-6">Domains</span>
           </a-menu-item>
         </a-sub-menu>
       </a-menu>
     </a-layout-sider>
     <a-layout class="bg-gray-200">
-      <a-layout-header class="bg-white shadow z-50">
+      <a-layout-header class="bg-white shadow px-12 z-50">
         <div class="flex justify-between">
-          <div>
+          <div class="search">
             <a-input-search></a-input-search>
           </div>
           <a-dropdown placement="bottomRight">
-            <div class="flex items-center cursor-pointer px-3">
-              <a-avatar src="" size="large"></a-avatar>
-            </div>
+            <a-space class="cursor-pointer">
+              <a-avatar src="https://i2.wp.com/ui-avatars.com/api/applause"></a-avatar>
+              <span class="select-none">applause</span>
+            </a-space>
             <template #overlay>
               <a-menu>
                 <a-menu-item>
@@ -45,16 +54,16 @@
         </div>
       </a-layout-header>
       <a-layout-content>
-
+        <slot></slot>
       </a-layout-content>
-      <a-layout-footer>
-
+      <a-layout-footer class="bg-gray-200">
       </a-layout-footer>
     </a-layout>
   </a-layout>
 </template>
 
 <script>
+import axios from 'axios'
 import { DownOutlined } from '@ant-design/icons-vue'
 
 export default {
@@ -66,6 +75,9 @@ export default {
   },
   components: {
     DownOutlined
+  },
+  async created() {
+    const { data } = await axios.get('/api/user')
   }
 }
 </script>
