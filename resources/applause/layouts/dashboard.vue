@@ -7,6 +7,7 @@
     <a-layout class="bg-gray-200">
       <a-layout-header class="bg-white shadow px-12 z-50">
         <div class="flex items-center h-full">
+          <header-search></header-search>
           <div class="flex flex-auto flex-row-reverse items-center">
             <header-dropdown></header-dropdown>
           </div>
@@ -24,11 +25,13 @@
 <script>
 import axios from 'axios'
 import SiderMenu from '../components/sider-menu.vue'
+import HeaderSearch from '../components/header-search.vue'
 import HeaderDropdown from '../components/header-dropdown.vue'
 
 export default {
   components: {
     SiderMenu,
+    HeaderSearch,
     HeaderDropdown
   },
   async created() {
