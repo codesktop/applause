@@ -24,6 +24,7 @@
 
 <script>
 import axios from 'axios'
+import { message } from 'ant-design-vue'
 import SiderMenu from '../components/sider-menu.vue'
 import HeaderSearch from '../components/header-search.vue'
 import HeaderDropdown from '../components/header-dropdown.vue'
@@ -35,7 +36,13 @@ export default {
     HeaderDropdown
   },
   async created() {
-    const { data } = await axios.get('/api/user')
+    try {
+      const { data } = await axios.get('/api/user')
+      localStorage.setItem('authData', JSON.stringify(data))
+    } catch ({ response }) {
+      await message.error(response.data.message)
+      this.$router.replace('/login')
+    }
   }
 }
 </script>

@@ -4,6 +4,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import Dashboard from '../layouts/dashboard.vue'
 
 export default {

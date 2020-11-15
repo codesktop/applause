@@ -66,13 +66,13 @@ export default {
       }
     }
   },
+  beforeRouteEnter() {
+    if (localStorage.getItem('authData')) {
+      return { path: '/' }
+    }
+  },
   beforeCreate() {
     head.title('Log In')
-  },
-  created() {
-    axios.get('/api/user')
-      .then(() => this.$router.replace('/'))
-      .catch(console.error)
   }
 }
 </script>
