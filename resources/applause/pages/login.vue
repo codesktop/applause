@@ -66,8 +66,13 @@ export default {
       }
     }
   },
-  created() {
+  beforeCreate() {
     head.title('Log In')
+  },
+  created() {
+    axios.get('/api/user')
+      .then(() => this.$router.replace('/'))
+      .catch(console.error)
   }
 }
 </script>

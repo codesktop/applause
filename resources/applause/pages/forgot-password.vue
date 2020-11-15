@@ -65,8 +65,13 @@ export default {
       }
     }
   },
-  created() {
+  beforeCreate() {
     head.title('Forgot Password')
+  },
+  created() {
+    axios.get('/api/user')
+      .then(() => this.$router.replace('/'))
+      .catch(console.error)
   }
 }
 </script>

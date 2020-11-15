@@ -20,7 +20,7 @@ export default {
   components: {
     OutsideLayout
   },
-  created() {
+  beforeCreate() {
     head.title('Page Not Found')
   }
 }
