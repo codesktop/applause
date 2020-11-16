@@ -16,3 +16,5 @@ const router = createRouter({
 app.use(antd)
 app.use(router)
 app.mount('#app')
+
+document.getElementById('app-spin').classList.add('hidden')
