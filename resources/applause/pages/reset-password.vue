@@ -4,7 +4,7 @@
       <div class="text-center mb-8">
         <h1 class="text-3xl">Reset Password</h1>
       </div>
-      <a-form class="resetPassword" :model="user" layout="vertical">
+      <a-form class="resetPassword" :model="user" layout="vertical" @submit.prevent="resetPassword">
         <a-form-item>
           <a-input v-model:value="user.password" placeholder="Password" size="large" type="password"></a-input>
         </a-form-item>
@@ -12,7 +12,7 @@
           <a-input v-model:value="user.passwordConfirmation" placeholder="Password Confirmation" size="large" type="password"></a-input>
         </a-form-item>
         <a-form-item>
-          <a-button block :loading="isLoading" size="large" type="primary" @click="onSubmit">Submit</a-button>
+          <a-button block :loading="isLoading" html-type="submit" size="large" type="primary">Submit</a-button>
         </a-form-item>
       </a-form>
     </div>
@@ -39,7 +39,7 @@ export default {
     }
   },
   methods: {
-    async onSubmit() {
+    async resetPassword() {
       this.isLoading = true
       try {
         const { email } = this.$route.query
@@ -57,13 +57,15 @@ export default {
       }
     }
   },
-  beforeRouteEnter() {
-    if (localStorage.getItem('authData')) {
-      return { path: '/' }
-    }
-  },
   beforeCreate() {
     head.title('Reset Password')
+  },
+  async created() {
+    try {
+      await axios.post('/api/logout')
+    } catch ({ response }) {
+      message.error(response.data.message)
+    }
   }
 }
 </script>

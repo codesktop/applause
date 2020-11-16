@@ -14,7 +14,7 @@
           <router-link to="/settings">Settings</router-link>
         </a-menu-item>
         <a-menu-item>
-          <a href="/logout" @click.prevent="logout">Sign out</a>
+          <router-link to="/sign-out">Sign out</router-link>
         </a-menu-item>
       </a-menu>
     </template>
@@ -29,17 +29,6 @@ import { DownOutlined } from '@ant-design/icons-vue'
 export default {
   components: {
     DownOutlined,
-  },
-  methods: {
-    async logout() {
-      try {
-        await axios.post('/api/logout')
-        localStorage.clear()
-        this.$router.replace('/login')
-      } catch ({ response }) {
-        message.error(response.data.message)
-      }
-    }
   }
 }
 </script>

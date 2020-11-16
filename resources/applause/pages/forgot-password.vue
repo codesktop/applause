@@ -9,7 +9,7 @@
           <h1 class="text-3xl">Forgot Password</h1>
           <p>Enter your email address to retrieve your password</p>
         </div>
-        <a-form class="forgotPassword" :model="user" layout="vertical">
+        <a-form class="forgotPassword" :model="user" layout="vertical" @submit.prevent="forgotPassword">
           <a-form-item>
             <a-input v-model:value="user.email" placeholder="Email Address" size="large" type="email">
               <template #prefix>
@@ -18,7 +18,7 @@
             </a-input>
           </a-form-item>
           <a-form-item>
-            <a-button block :loading="isLoading" size="large" type="primary" @click="onSubmit">Retrieve Password</a-button>
+            <a-button block :loading="isLoading" html-type="submit" size="large" type="primary">Retrieve Password</a-button>
           </a-form-item>
         </a-form>
       </template>
@@ -51,7 +51,7 @@ export default {
     }
   },
   methods: {
-    async onSubmit() {
+    async forgotPassword() {
       this.isLoading = true
       try {
         const { email } = this.user
@@ -65,13 +65,15 @@ export default {
       }
     }
   },
-  beforeRouteEnter() {
-    if (localStorage.getItem('authData')) {
-      return { path: '/' }
-    }
-  },
   beforeCreate() {
     head.title('Forgot Password')
+  },
+  async created() {
+    try {
+      await axios.post('/api/logout')
+    } catch ({ response }) {
+      message.error(response.data.message)
+    }
   }
 }
 </script>

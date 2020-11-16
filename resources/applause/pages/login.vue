@@ -4,7 +4,7 @@
       <div class="text-center mb-8">
         <h1 class="text-3xl">Welcome Back</h1>
       </div>
-      <a-form class="login" :model="user" layout="vertical">
+      <a-form class="login" :model="user" layout="vertical" @submit.prevent="login">
         <a-form-item>
           <a-input v-model:value="user.email" placeholder="Email Address" size="large" type="email">
             <template #prefix>
@@ -23,7 +23,7 @@
           </div>
         </a-form-item>
         <a-form-item>
-          <a-button block :loading="isLoading" size="large" type="primary" @click="onSubmit">Log In</a-button>
+          <a-button block :loading="isLoading" html-type="submit" size="large" type="primary">Log In</a-button>
         </a-form-item>
       </a-form>
     </div>
@@ -53,7 +53,7 @@ export default {
     }
   },
   methods: {
-    async onSubmit() {
+    async login() {
       this.isLoading = true
       try {
         const { email, password } = this.user
@@ -66,13 +66,15 @@ export default {
       }
     }
   },
-  beforeRouteEnter() {
-    if (localStorage.getItem('authData')) {
-      return { path: '/' }
-    }
-  },
   beforeCreate() {
     head.title('Log In')
+  },
+  async created() {
+    try {
+      await axios.post('/api/logout')
+    } catch ({ response }) {
+      message.error(response.data.message)
+    }
   }
 }
 </script>

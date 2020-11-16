@@ -14,6 +14,10 @@ export default [
     component: loginPage
   },
   {
+    path: '/sign-out',
+    redirect: '/login'
+  },
+  {
     path: '/forgot-password',
     component: forgotPasswordPage
   },
